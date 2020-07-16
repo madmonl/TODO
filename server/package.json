@@ -1,0 +1,12 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Server for the TODO application",
+  "main": "index.js",
+  "repository": "https://github.com/madmonl/TODO.git",
+  "author": "Liad Madmon",
+  "license": "MIT",
+  "dependencies": {
+    "eslint": "^7.4.0"
+  }
+}
