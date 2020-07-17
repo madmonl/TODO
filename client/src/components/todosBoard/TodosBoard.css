@@ -1,0 +1,9 @@
+.tableCell { 
+  width: 33% !important;
+  vertical-align: top !important;
+}
+
+.table-container {
+  max-width: 80%;
+  margin: 10px auto;
+}

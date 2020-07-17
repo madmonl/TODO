@@ -7,6 +7,17 @@
   "author": "Liad Madmon",
   "license": "MIT",
   "dependencies": {
-    "eslint": "^7.4.0"
+    "@types/node": "^14.0.23",
+    "body-parser": "^1.19.0",
+    "eslint": "^7.4.0",
+    "express": "^4.17.1"
+  },
+  "scripts": {
+    "start": "nodemon",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "eslint-plugin-import": "^2.22.0",
+    "nodemon": "^2.0.4"
   }
 }
