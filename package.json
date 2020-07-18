@@ -4,5 +4,9 @@
     "eslint": "^7.4.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-react": "^7.20.3"
+  },
+  "scripts": {
+    "start": "cd server && node index.js",
+    "postinstall": "cd client && yarn && yarn run build && cd ../server && yarn && yarn run build"
   }
 }

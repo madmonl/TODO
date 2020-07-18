@@ -1,5 +1,6 @@
 
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 const { TODOS, TODO } = require('./types');
 const { todo, inProgress, finished } = require('./data')
@@ -12,6 +13,7 @@ const todos: typeof TODOS = {
 let currId = 2;
 
 const app = express();
+app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 app.use(bodyParser.json());
 
 app.get('/api/todos', (_, res) => {
@@ -20,19 +22,30 @@ app.get('/api/todos', (_, res) => {
 });
 
 app.post('/api/todo/:id', (req, res) => {
-  console.log('id, prevStatus, newTodo')
   const { id }: { id: string } = req.params;
-  const { prevStatus, newTodo }: { prevStatus: string, newTodo: typeof TODO } = req.body;
+  const { prevStatus, todo }: { prevStatus: string, todo: typeof TODO } = req.body;
   delete todos[prevStatus][id];
-  todos[newTodo.status][id] = newTodo;
-  res.json(newTodo);
+  todos[todo.status][id] = todo;
+  res.json(todo);
 })
+
 app.post('/api/todo/', (req, res) => {
   const { todo }: { todo: typeof TODO } = req.body;
   currId++;
-  todos[todo.status][currId] = { ...todo, id: currId }
-  res.json(todo);
+  todos.todo[currId] = {
+    ...todo,
+    id: currId,
+    status: 'todo'
+  }
+
+  res.json(todos.todo[currId]);
 })
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
+
+
 const port = process.env.PORT || 5000;
 app.listen(port);
 

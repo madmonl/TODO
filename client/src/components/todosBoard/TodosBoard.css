@@ -1,9 +1,31 @@
+
+tbody {
+  display:block !important;
+  height: 80vh !important;
+  overflow:auto !important;
+}
+
+thead, tbody tr {
+  display:table !important;
+  width:100% !important;
+  table-layout:fixed !important;/* even columns width , fix width of table too*/
+}
+
+tbody {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
 .tableCell { 
-  width: 33% !important;
   vertical-align: top !important;
+  border-bottom: none !important;
 }
 
 .table-container {
   max-width: 80%;
   margin: 10px auto;
+}
+
+.table-header-cell {
+  padding: 24px !important;
+  font-size: 1.2rem !important;
 }

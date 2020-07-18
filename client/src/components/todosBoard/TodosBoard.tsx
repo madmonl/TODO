@@ -20,14 +20,6 @@ const StyledTableCell = withStyles((theme) => ({
   }
 }))(TableCell);
 
-const StyledTableRow = withStyles((theme) => ({
-  root: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover
-    }
-  }
-}))(TableRow);
-
 const useStyles = makeStyles({
   table: {
     minWidth: 700
@@ -42,13 +34,13 @@ export default function TodosBoard({ todos }: { todos: any }) {
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Todo</StyledTableCell>
-            <StyledTableCell>In Progress</StyledTableCell>
-            <StyledTableCell>Finished</StyledTableCell>
+            <StyledTableCell className="table-header-cell">Todo</StyledTableCell>
+            <StyledTableCell className="table-header-cell">In Progress</StyledTableCell>
+            <StyledTableCell className="table-header-cell">Finished</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          <StyledTableRow>
+          <TableRow className="table-row">
             <TableCell className="tableCell">
               <TodosBoardCell cards={todos.todo} />
             </TableCell>
@@ -58,7 +50,7 @@ export default function TodosBoard({ todos }: { todos: any }) {
             <TableCell className="tableCell">
               <TodosBoardCell cards={todos.finished} />
             </TableCell>
-          </StyledTableRow>
+          </TableRow>
         </TableBody >
       </Table >
     </TableContainer >
