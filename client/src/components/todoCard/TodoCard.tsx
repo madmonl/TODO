@@ -8,13 +8,13 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { useMutation, queryCache } from 'react-query';
 import { TODO } from '../../types';
-import { changeStatus } from '../../queries/mutations';
+import { editTodo } from '../../queries/mutations';
 import './TodoCard.css';
 
 export default function TodoCard({ todo }: { todo: TODO }) {
   const { id, name, deadline, implementors, status } = todo;
 
-  const [mutateTodo] = useMutation(changeStatus, {
+  const [mutateTodo] = useMutation(editTodo, {
     onSuccess: ({ data, prevStatus }: { data: TODO, prevStatus: string }) => (
       queryCache.setQueryData('todos', (old: any) => {
         const newTodos = {
@@ -34,22 +34,22 @@ export default function TodoCard({ todo }: { todo: TODO }) {
     if (direction === 'forward' && status === 'todo') {
       mutateTodo({
         prevStatus: status,
-        newTodo: { ...todo, status: 'inProgress' }
+        todo: { ...todo, status: 'inProgress' }
       })
     } else if (direction === 'forward' && status === 'inProgress') {
       mutateTodo({
         prevStatus: status,
-        newTodo: { ...todo, status: 'finished' }
+        todo: { ...todo, status: 'finished' }
       })
     } else if (direction === 'backwards' && status === 'inProgress') {
       mutateTodo({
         prevStatus: status,
-        newTodo: { ...todo, status: 'todo' }
+        todo: { ...todo, status: 'todo' }
       })
     } else if (direction === 'backwards' && status === 'finished') {
       mutateTodo({
         prevStatus: status,
-        newTodo: { ...todo, status: 'inProgress' }
+        todo: { ...todo, status: 'inProgress' }
       })
     } else {
       throw new Error('Change status params are invalid');
